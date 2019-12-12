@@ -14,11 +14,15 @@ I worked at [Cerner](https://en.wikipedia.org/wiki/Cerner) for more than 5 years
 ## Workflow
 Most workflows I've followed attempted to follow (with varying degrees of success) the [git flow](https://nvie.com/posts/a-successful-git-branching-model/) model. Although that post is thorough, it gives a view that may be a little overwhelming, especially to a developer who just wants a workflow that'll minimize conflicts and time spent fighting git.
 
-Essentially, there will likely be one or more branches in your repository that are considered "main" or "central". Names for these include `master`, `release`, `staging`, `develop`, `wip`, and the like. They typically represent the codebase at various stages of release. Which of these you branch off of depends on what you're trying to achieve, but hopefully you at least know which you should be working with.
+Essentially, there will likely be one or more branches in your repository that are considered "main" or "central". Names for these include `master`, `release`, `staging`, `develop`, `wip`, and the like. They typically represent the codebase at various stages of release. Which of these you branch off of depends on what you're trying to achieve, but hopefully you at least know which you should be using as your base branch.
 
 ### Happy Path
-A quick happy path work flow should look something like this: Check out master, update it, and start a new branch for your work.
+A quick summary of the happy path work flow should look something like this:
 
+#### Pull Changes
+Check out your base branch, pull any recent changes, and start a new branch for your work.
+
+![Pull Changes](2019-12-10-My-Git-Workflow/1.checkout-master.png)
 
 
 
