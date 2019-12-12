@@ -21,8 +21,16 @@ A quick summary of the happy path work flow should look something like this:
 
 #### Pull Changes
 Check out your base branch, pull any recent changes, and start a new branch for your work.
-
 ![Pull Changes](2019-12-10-My-Git-Workflow/1.checkout-master.png)
+It's important to note here that I've prefixed my branch name. `feature` is a prefix from [git flow](https://nvie.com/posts/a-successful-git-branching-model/) that signifies from where I'm branching and what I intend to do in this branch. `GH-1` signifies that this branch is related to GitHub issue #1. If you were using something like JIRA, it would read `JIRAQUEUE-1` instead. This provides traceability back to the requirements of the feature this branch will implement. Ideally, all branches should be prefixed with at least an issue number, especially in a professional setting.
+
+#### Add your feature
+Write your tests, fix your bugs, etc. At this point, feel free to make as many commits as you'd like. Make them and push them often, especially before you leave work for the day. You never know what might happen to your local copy of the work you've done, or the computer on which it resides.
+
+Once you think you're ready for a code review, take a look at your commit history with something like, "git log --pretty=oneline"
+
+
+
 
 
 
