@@ -22,17 +22,23 @@ A quick summary of the happy path work flow should look something like this:
 #### Pull Changes
 Check out your base branch, pull any recent changes, and start a new branch for your work.
 ![Pull Changes](2019-12-10-My-Git-Workflow/1.checkout-master.png)
+
 It's important to note here that I've prefixed my branch name. `feature` is a prefix from [git flow](https://nvie.com/posts/a-successful-git-branching-model/) that signifies from where I'm branching and what I intend to do in this branch. `GH-1` signifies that this branch is related to GitHub issue #1. If you were using something like JIRA, it would read `JIRAQUEUE-1` instead. This provides traceability back to the requirements of the feature this branch will implement. Ideally, all branches should be prefixed with at least an issue number, especially in a professional setting.
 
 #### Add your feature
 Write your tests, fix your bugs, etc. At this point, feel free to make as many commits as you'd like. Make them and push them often, especially before you leave work for the day. You never know what might happen to your local copy of the work you've done, or the computer on which it resides.
 
-Once you think you're ready for a code review, take a look at your commit history with something like, "git log --pretty=oneline"
+Once you think you're ready for a code review, take a look at your commit history. Personally, I prefer `git log --pretty=oneline`. Its output looks like this:
+![One Line Log](2019-12-10-My-Git-Workflow/2.one-line-log.png)
 
 #### Clean up your commit history
 Looking at your Git log, count how many commits you've made, maybe add 1 or 2 to that number, then run `git rebase -i HEAD~X`. This will allow you to edit your commit history starting from X commits before your current commit. Depending on what the history looks like before your changes, you should see something like this:
+![Interactive Rebase](2019-12-10-My-Git-Workflow/2.one-line-log.png)
 
-If you see more commits
+Note that the order of commits is opposite of what you saw in `git log`. Figure out which commits you would like to merge, which are junk, and which need better messages. Replace the word `pick` with `f` (for `fixup`) to fold junk commits into ones above them. Also, feel free to replace `pick` with `r` (for `reword`) to change a commit message if it isn't very helpful.
+![Interactive Rebase Selections](2019-12-10-My-Git-Workflow/4.interactive-rebase-selections.png)
+
+Save and close the text file when you're done.
 
 
 ... post in progress
