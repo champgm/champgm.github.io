@@ -29,9 +29,10 @@ Write your tests, fix your bugs, etc. At this point, feel free to make as many c
 
 Once you think you're ready for a code review, take a look at your commit history with something like, "git log --pretty=oneline"
 
+#### Clean up your commit history
+Looking at your Git log, count how many commits you've made, maybe add 1 or 2 to that number, then run `git rebase -i HEAD~X`. This will allow you to edit your commit history starting from X commits before your current commit. Depending on what the history looks like before your changes, you should see something like this:
 
-
-
+If you see more commits
 
 
 ... post in progress
