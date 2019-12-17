@@ -33,12 +33,25 @@ Once you think you're ready for a code review, take a look at your commit histor
 
 #### Clean up your commit history
 Looking at your Git log, count how many commits you've made, maybe add 1 or 2 to that number, then run `git rebase -i HEAD~X`. This will allow you to edit your commit history starting from X commits before your current commit. Depending on what the history looks like before your changes, you should see something like this:
-![Interactive Rebase](2019-12-10-My-Git-Workflow/2.one-line-log.png)
+![Interactive Rebase](2019-12-10-My-Git-Workflow/3.interactive-rebase.png)
 
-Note that the order of commits is opposite of what you saw in `git log`. Figure out which commits you would like to merge, which are junk, and which need better messages. Replace the word `pick` with `f` (for `fixup`) to fold junk commits into ones above them. Also, feel free to replace `pick` with `r` (for `reword`) to change a commit message if it isn't very helpful.
+The order of commits is opposite of what you saw in `git log`. Figure out which commits you would like to merge, which are junk, and which need better messages. Replace the word `pick` with `f` (for `fixup`) to fold junk commits into ones above them. Also, feel free to replace `pick` with `r` (for `reword`) to change a commit message if it isn't very helpful.
 ![Interactive Rebase Selections](2019-12-10-My-Git-Workflow/4.interactive-rebase-selections.png)
 
-Save and close the text file when you're done.
+Save and close the text file when you're done. If you've opted to reword something, a new file will show up giving you the opportunity to reword that commit. Close the file when you're done.
+
+Once that's done, your commit history should look much nicer:
+![Clean History](2019-12-10-My-Git-Workflow/5.clean-history.png)
+
+Note that, throughout this process I've been tagging all of my commit messages with `GH-1:`. Along with providing traceability like `GH-1` in the branch name does, adding issue tags in commit messages provides extra features within GitHub and even for 3rd party integrations like JIRA and Crucible.
+
+Here's a specific example. When I open a pull request for this branch, each commit is tagged with a link that, when clicked, takes me directly to the issue to which this feature branch belongs:
+![Pull Request](2019-12-10-My-Git-Workflow/6.pull-request.png)
+
+#### Rebase with the base branch
+Before you open a code review, you need to check on master to incorporate any changes that have been made to it while you were working.
+
+
 
 
 ... post in progress
