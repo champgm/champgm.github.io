@@ -37,7 +37,7 @@ A quick summary of the happy path work flow should look something like this:
 #### Pull Changes
 Check out your base branch, pull any recent changes, and start a new branch for your work.
 
-![Pull Changes](2019-12-10-My-Git-Workflow/1.checkout-master.png)
+![Pull Changes](/images/2019-12-15-My-Git-Workflow/1.checkout-master.png)
 
 It's important to note here that I've prefixed my branch name. `feature` is a prefix from [Git flow](https://nvie.com/posts/a-successful-git-branching-model/) that signifies from where I'm branching and what I intend to do in this branch. `GH-1` signifies that this branch is related to GitHub issue #1. If you were using something like JIRA, it would read `JIRAQUEUE-1` instead. This provides traceability back to the requirements of the feature this branch will implement. Ideally, all branches should be prefixed with at least an issue number, especially in a professional setting.
 
@@ -46,33 +46,33 @@ Write your tests, fix your bugs, etc. At this point, feel free to make as many c
 
 Once you think you're ready for a code review, take a look at your commit history. Personally, I prefer `git log --pretty=oneline`. Its output looks like this:
 
-![One Line Log](2019-12-10-My-Git-Workflow/2.one-line-log.png)
+![One Line Log](/images/2019-12-15-My-Git-Workflow/2.one-line-log.png)
 
 #### Clean Up Your Commit History
 Looking at your Git log, count how many commits you've made, maybe add 1 or 2 to that number to have some context, then run `git rebase -i HEAD~X`. This will allow you to edit your commit history starting from X commits before your current commit. Depending on what the history looks like before your changes, you should see something like this:
 
-![Interactive Rebase](2019-12-10-My-Git-Workflow/3.interactive-rebase.png)
+![Interactive Rebase](/images/2019-12-15-My-Git-Workflow/3.interactive-rebase.png)
 
 The order of commits is opposite of what you saw in `git log`. Figure out which commits you would like to merge, which are junk, and which need better messages. Replace the word `pick` with `f` (for `fixup`) to fold junk commits into ones above them. Also, feel free to replace `pick` with `r` (for `reword`) to change a commit message if it isn't very helpful.
 
-![Interactive Rebase Selections](2019-12-10-My-Git-Workflow/4.interactive-rebase-selections.png)
+![Interactive Rebase Selections](/images/2019-12-15-My-Git-Workflow/4.interactive-rebase-selections.png)
 
 Save and close the text file when you're done. If you've opted to reword something, a new file will show up giving you the opportunity to reword that commit. Close the file when you're done.
 
 Once that's done, your commit history should look much nicer:
 
-![Clean History](2019-12-10-My-Git-Workflow/5.clean-history.png)
+![Clean History](/images/2019-12-15-My-Git-Workflow/5.clean-history.png)
 
 Note that throughout this process I've been tagging all of my commit messages with `GH-1:`. Along with providing traceability like `GH-1` in the branch name does, adding issue tags in commit messages provides extra features within GitHub and even for 3rd party integrations like JIRA and Crucible.
 
 Here's a specific example. When I open a pull request for this branch, each commit is tagged with a link that, when clicked, takes me directly to the issue to which this feature branch belongs:
 
-![Pull Request](2019-12-10-My-Git-Workflow/6.pull-request.png)
+![Pull Request](/images/2019-12-15-My-Git-Workflow/6.pull-request.png)
 
 #### Rebase With The Base Branch
 Before you open a code review or pull request, you need to check on master to incorporate any changes that have been made to it while you were working.
 
-![Rebase Master](2019-12-10-My-Git-Workflow/7.rebase-master.png)
+![Rebase Master](/images/2019-12-15-My-Git-Workflow/7.rebase-master.png)
 
 Hopefully, the result should look something like that. Now, unless there have been absolutely no changes in your base branch, in order to get your changes updated in the remote repository you're going to need to run `git push -f origin/<branchName>`. This is called a "force push" and will be destructive to (that is, it will overwrite) the branch in the remote repository. If you'd prefer NOT to do that, feel free to create another branch at this point. Maybe name it something like, `feature/GH-1-Write-Git-Workflow-Post-REVIEW` and push that instead. You could even do this *before* starting the rebase instead of after it's completed.
 
@@ -90,15 +90,15 @@ Do your best to stick to the Happy Path strategy above and you should be fine. I
 #### Branch and Cherry Pick
 Sometimes rebasing just... has issues. It may even be because of something out of your control or understanding, like forking commit ancestry. If you stick to fixup and rebase, you should be okay. But if you're not, try cherry-picking. Now, this is optional, but if you fixup until you have only one commit you will only have to cherry-pick once. If you have more commits, you will need to go through the cherry-pick process once for each commit.
 
-![Clean Cherry Pick History](2019-12-10-My-Git-Workflow/8.clean-cherry-pick-history.png)
+![Clean Cherry Pick History](/images/2019-12-15-My-Git-Workflow/8.clean-cherry-pick-history.png)
 
 Once you have your branch's number of commits minimized, take note of the commit hash ID in the Git log (b8dd946ea631a96fbaf6e3a878299ab3d1bd9633 in the picture shown above). When you have that safe, checkout master, pull any changes, and create a new branch.
 
-![New Cherry Pick Branch](2019-12-10-My-Git-Workflow/9.new-cherry-pick-branch.png)
+![New Cherry Pick Branch](/images/2019-12-15-My-Git-Workflow/9.new-cherry-pick-branch.png)
 
 Once that's done, run cherry-pick with your commit hash, `git cherry-pick b8dd946ea631a96fbaf6e3a878299ab3d1bd9633`
 
-![Cherry Pick](2019-12-10-My-Git-Workflow/10.cherry-pick.png)
+![Cherry Pick](/images/2019-12-15-My-Git-Workflow/10.cherry-pick.png)
 
 Most likely, you won't get a nice response like that, because if you're trying to cherry-pick you're probably having trouble with conflicts. Either way, cherry-pick will guarantee that that you only have to deal with conflicts a finite and expected number of times. Good luck.
 
@@ -107,7 +107,7 @@ Most likely, you won't get a nice response like that, because if you're trying t
 #### Git Reference Logs
 Dealing with Git can get a little stressful, especially for people unfamiliar with it. Occasionally, developers will even reach a point in their Git flailing that they think their code is, "gone" which is definitely not the case. Always keep in mind that *every* action you take is recorded in a Git log. Use `git reflog` to take a look:
 
-![Cherry Pick](2019-12-10-My-Git-Workflow/11.git-reflog.png)
+![Cherry Pick](/images/2019-12-15-My-Git-Workflow/11.git-reflog.png)
 
 As you can see from this repository's history, I've been doing a lot of thrashing around trying to demonstrate and screenshot various situations.
 
@@ -117,4 +117,4 @@ All of those identifiers on the left are the SHA hashes of states that Git has r
 ### When All Else Fails
 If you find yourself in a place that this workflow and its recovery strategies can't handle, you've probably learned a lot about Git on the way there. You should know enough to navigate this handy flow chart from [Justin Hileman](http://justinhileman.info/article/git-pretty/) to a successful resolution:
 
-![Cherry Pick](2019-12-10-My-Git-Workflow/12.git-pretty.png)
+![Cherry Pick](/images/2019-12-15-My-Git-Workflow/12.git-pretty.png)
