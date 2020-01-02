@@ -3,6 +3,13 @@ layout: post
 title: Contextual Logging
 ---
 
+- [Rambling](#rambling)
+- [Contextual Logging](#contextual-logging)
+  * [Transaction IDs](#transaction-ids)
+  * [Choices and Results](#choices-and-results)
+  * [Timing](#timing)
+  * [Documentation](#documentation)
+
 # Rambling
 
 When I first joined CareerBuilder, my team's project was a mess. I was told it began as a Hackathon project that was popular enough to be picked up by a development team as a replacement for their legacy solution. It was a data pipeline which accepted candidate resume and application data, verified some of the data, transformed it to match the client's ATS (applicant tracking system), then connected to that ATS and created/updated the data there. It was a microservice architecture composed of 20+ AWS Lambda functions.
@@ -64,12 +71,12 @@ Knowing the amount of time individual services take can be *crucial* to solving 
 
 At one point, using this kind of data in combination with various transaction IDs, my team was able to track and reduce response time my more than 50%. We used it to do a few things specifically:
 
-* Average full-system response time
-* Exceptionally long response times and what caused them
-* How frequently a microservice was used and if it even warranted attention
+* Find average full-system response time
+* Pinpoint and investigate exceptionally long response times
+* Judge how important a microservice was in relation to others and which ones even warranted attention
 * Determine where microservices were slow when interacting with infrastructure like data storage
-* Where microservices needed to cache data retrieval
-* When/If calls to other microservices could be cached
+* Determine where microservices needed to cache data retrieval
+* Determine when/if calls to other microservices could be cached
 
 ## Documentation
 
